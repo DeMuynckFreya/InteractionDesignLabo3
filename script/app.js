@@ -1,53 +1,15 @@
-let email = {},
-    password = {},
-    signInButton;
+function handleFloatingLabel() {console.log("floating label");
+    let input = document.querySelector('.js-floating-input'),
+        label = document.querySelector('.js-floating-label');
 
-const isValidEmailAddress = function(emailAddress) {
-    // Basis manier om e-mailadres te checken.
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailAddress);
-};
-const isEmpty = function(fieldValue) {
-    return !fieldValue || !fieldValue.length;
-};
-
-const isValidPassword = function(password){
-    return password.length > 8
-}
-
-const addErrors = function(inputObject){
-    inputObject.errorMessage.innerText = 'Field is empty';
-}
-
-const enableListeners = function(){
-    email.input.addEventListener('blur',function(){
-        if(isEmpty(email.input.value)){
-            addErrors(email)
+    input.addEventListener('blur', function () {
+        
+        if (input.value) {
+            label.classList.add('is-floating');
+        } else {
+            label.classList.remove('is-floating');
         }
-    })
-    password.input.addEventListener('blur',function(){
-
-    })
-
-    signInButton.addEventListener('click',function(){
-
-    })
-}
-
-const getDOMElements = function(){
-    signInButton = document.querySelector('.js-sign-in-button')
-
-    email.field = document.querySelector('.js-email-field')
-    email.input = document.querySelector('.js-email-input')
-    email.errorMessage = document.querySelector(".js-email-message")
-    
-    password.field = document.querySelector('.js-password-field')
-    password.input = document.querySelector('.js-password-input')
-    password.errorMessage = document.querySelector(".js-password-message")
-    enableListeners();
-}
-
-function handleFloatingLabel() {
-   
+    });
 }
 
 function handlePasswordSwitcher() {
@@ -67,7 +29,6 @@ function handlePasswordSwitcher() {
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('Script loaded!');
-    getDOMElements()
     handleFloatingLabel();
     handlePasswordSwitcher();
 });
